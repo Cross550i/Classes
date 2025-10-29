@@ -1,5 +1,8 @@
+import typing_extensions
+
+
 class Auto:
-    def __init__(self, type: str, brand: str, model: str| None = None, year: int | None = None,
+    def __init__(self, type: str, brand: str, model: str, year: int | None = None,
                  fuel_type: str | None = None) -> None:
         self.type = type
         self.brand = brand
@@ -40,31 +43,31 @@ class Auto:
 
 
 
-car_one = Auto("Легковой", brand="БМВ", model="M5", year=2015, fuel_type="Дизель")
-car_two = Auto("Легковой","Volkswagen", "Golf")
-car_three = Auto("Грузовик","Volvo", "FH")
-car_four = Auto("Мото","Harley Davidson")
+# car_one = Auto("Легковой автомобиль", brand="BMW", model="M5", year=2015, fuel_type="Дизель")
+# car_two = Auto("Легковой автомобиль","Volkswagen", "Golf")
+# car_three = Auto("Грузовик","Volvo", "FH")
+# car_four = Auto("Мотоцик","Harley Davidson")
 
 
-car_one.start_engine()
-car_one.drive(5)
-car_one.get_info()
-car_one.stop_engine()
+class Truck(Auto):
+    def __init__(self, brand: str, model: str, year: int, fuel_type: str, cargo_capacity: int) -> None:
+        super().__init__(brand, model, year, fuel_type)
+        self.cargo_capacity = cargo_capacity        # Грузоподъемность кг
+        self.current_cargo = 0  # Сколько в ней груза лежит в кг
 
-#
-# car_two.start_engine()
-# car_two.drive(10)
-# car_two.get_info()
-# car_two.stop_engine()
-#
-# car_three.start_engine()
-# car_three.drive(7)
-# car_three.get_info()
-# car_three.stop_engine()
-#
-# car_four.start_engine()
-# car_four.drive(12)
-# car_four.get_info()
-# car_four.stop_engine()
 
+    def load_cargo(self, weight: int):
+        if self.current_cargo + weight <= self.cargo_capacity:
+            all_weight = self.current_cargo + weight
+            print(f"Загружено {weight}кг., общий вес составляет {all_weight}кг.,"
+                  f"Свободно {self.cargo_capacity - all_weight}кг.")
+
+    def get_info(self):
+        print(f"{self.brand} {self.model} Груз: {self.current_cargo}/{self.cargo_capacity} Пробег: {self.mileage}км")
+
+car_five = Truck("MAN", "FX100", 2015, "Diesel", 20000)
+
+
+# car_five.load_cargo(5000)
+car_five.get_info()
 
