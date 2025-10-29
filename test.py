@@ -47,8 +47,9 @@ class Auto:
 
 
 class Truck(Auto):
-    def __init__(self, type: str, brand: str, model: str, year: int, cargo_capacity: int) -> None:
+    def __init__(self, brand: str, model: str, year: int, cargo_capacity: int) -> None:
         super().__init__(type, brand, model, year)
+        self.type = "Грузовик"
         self.cargo_capacity = cargo_capacity        # Грузоподъемность кг
         self.current_cargo = 0                      # Сколько в ней груза лежит в кг
 
@@ -60,34 +61,43 @@ class Truck(Auto):
                   f"Свободно {self.cargo_capacity - all_weight}кг.")
 
     def get_info(self):
-        print(f"{self.type} {self.brand} {self.model} Груз: {self.current_cargo}/{self.cargo_capacity} Пробег: {self.mileage}км")
+        print(f"{self.type} {self.brand} {self.model} Груз: {self.current_cargo}/{self.cargo_capacity} "
+              f"Пробег: {self.mileage}км")
 
-car_five = Truck("Грузовик","MAN", "FX100", 2015, 20000)
-
-car_five.get_info()
+# car_five = Truck("MAN", "FX100", 2015, 20000)
+#
+# car_five.get_info()
 
 
 
 
 
 class Moto(Auto):
-    def __init__(self, type: str, brand: str, model: str, year: int, weelie: bool) -> None:
+    def __init__(self, brand: str, model: str, year: int, weelie: bool) -> None:
         super().__init__(type, brand, model, year)
         self.weelie = weelie
+        self.type = "Мотоцикл"
 
     def wellie(self):
-        if self.type == "Мотоцикл" and self.weelie == True:
+        if self.weelie:
             print("Встает на дыбы")
         else:
             print("Не встает на дыбы")
 
 
+    def get_info(self):
+        print(f"{self.type} {self.brand} {self.model} {self.year}")
 
-# car_six = Moto("Мотоцикл", "Kawasaki", "Ninja", 2023, True)
-# car_six.wellie()
+
+
+car_six = Moto("Kawasaki", "Ninja", 2023, False)
+car_six.get_info()
 
 
 class PassengerCar(Auto):
-    def __init__(self, type: str, brand: str, model: str, year: int, fuel_type: str, max_passengers: int) -> None:
+    def __init__(self, brand: str, model: str, year: int, fuel_type: str, max_passengers: int)\
+            -> None:
         super().__init__(type, brand, model, year, fuel_type)
+        self.type = "Маршрутка"
         self.max_passengers = max_passengers
+
