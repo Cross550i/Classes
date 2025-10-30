@@ -48,8 +48,7 @@ class Auto:
 
 class Truck(Auto):
     def __init__(self, brand: str, model: str, year: int, cargo_capacity: int) -> None:
-        super().__init__(type, brand, model, year)
-        self.type = "Грузовик"
+        super().__init__("Грузовик", brand, model, year)
         self.cargo_capacity = cargo_capacity        # Грузоподъемность кг
         self.current_cargo = 0                      # Сколько в ней груза лежит в кг
 
@@ -74,9 +73,8 @@ class Truck(Auto):
 
 class Moto(Auto):
     def __init__(self, brand: str, model: str, year: int, weelie: bool) -> None:
-        super().__init__(type, brand, model, year)
+        super().__init__("Мотоцикл", brand, model, year)
         self.weelie = weelie
-        self.type = "Мотоцикл"
 
     def wellie(self):
         if self.weelie:
@@ -90,14 +88,35 @@ class Moto(Auto):
 
 
 
-car_six = Moto("Kawasaki", "Ninja", 2023, False)
-car_six.get_info()
+# car_six = Moto("Kawasaki", "Ninja", 2023, False)
+# car_six.get_info()
 
 
 class PassengerCar(Auto):
     def __init__(self, brand: str, model: str, year: int, fuel_type: str, max_passengers: int)\
             -> None:
-        super().__init__(type, brand, model, year, fuel_type)
-        self.type = "Маршрутка"
+        super().__init__("Маршрутка", brand, model, year, fuel_type)
         self.max_passengers = max_passengers
+
+
+class Electro(Auto):
+    def __init__(self, brand: str, model: str, year: int, charge: int) -> None:
+        super().__init__("Электро", brand, model, year)
+        self.charge = charge
+
+
+    def start_engine(self):
+        if self.charge == 0:
+            print(f"Аккумулятор {self.brand} {self.model} разряжен")
+        else:
+            print(f"Двигатель {self.brand} {self.model} запустился")
+
+
+    def get_info(self):
+        print(f"{self.type} {self.brand} {self.model} {self.year} Заряд аккумулятора-{self.charge}%")
+
+car_seven = Electro("Tesla", "Model 3", 2024, 50)
+car_seven.get_info()
+car_seven.start_engine()
+
 
