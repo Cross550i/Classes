@@ -24,19 +24,19 @@ class MorningRoutine:
          self.devices = []
 
     def add_device(self, device):
-        devices.append(device)
+        self.devices.append(device)
 
 
     def start_morning(self):
         print("Запуск утреннего режима")
-        for devices in self.devices:
-            devices.activate()
+        for device in self.devices:
+            device.activate()
             print("Режим 'Доброе утро' активирован")
 
 
 routine = MorningRoutine()
-routine.add_device(SmartLight)
-routine.add_device(Termostate)
+routine.add_device(SmartLight())
+routine.add_device(Thermostat())
 routine.start_morning()
 
 
